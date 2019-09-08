@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bufio"
 	"encoding/json"
 	"fmt"
 	"golang.org/x/net/context"
@@ -11,6 +12,8 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strings"
+
 	//"strings"
 	"time"
 )
@@ -44,8 +47,43 @@ func main() {
 	}
 
 
-	spreadsheetId := "1Xt49-0sde5-gQjsz3QSweGyCeNUEhMZpsxInaaaV6ew"
 
+	if os.Args[1] == "s" {
+		//if we want to setup
+		f, err := os.Create("config.txt")
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+
+		fmt.Println("Please Enter the sheets ID you want to use ")
+
+		text, _ := bufio.NewReader(os.Stdin).ReadString('\n')
+		fmt.Println("here")
+		fmt.Println(text)
+		_, err2 := f.WriteString(strings.TrimSuffix(text, "\n"))
+
+		if err2 != nil {
+			fmt.Println(err)
+			_ = f.Close()
+			return
+		}
+	}
+
+
+	file, err := os.Open("config.txt")
+	if err != nil {
+		log.Fatal(err)
+	}
+	t, err2 := ioutil.ReadAll(file)
+	if err2 != nil{
+
+	}
+
+	defer file.Close()
+
+
+	spreadsheetId := string(t)
 	clockInRange := "Sheet1!A2:B99"
 	clockOutRange := "Sheet1!D2:E99"
 	formulaRange := "Sheet1!F2:G99"
