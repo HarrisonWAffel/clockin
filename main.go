@@ -81,6 +81,11 @@ func main() {
 			return
 		}
 
+		fmt.Println("1] to go https://developers.google.com/sheets/api/quickstart/go")
+		fmt.Println("2] Click 'ENABLE THE GOOGLE SHEETS API'")
+		fmt.Println("3] When the pop up appears click 'DOWNLOAD CLIENT CONFIGURATION'")
+		fmt.Println("4] place the downloaded file next to the 'main.go' file")
+
 	return
 	}
 
