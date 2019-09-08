@@ -28,8 +28,15 @@ func main() {
 
 
 	//~~ setup the api ~~//
+	if len(os.Args) == 1 {
+		fmt.Println("Please Supply Required Parameters")
+		fmt.Println("s : setup, link to a new spread sheet or account")
+		fmt.Println("i : clock in, write starting time to sheet")
+		fmt.Println("o : clock out, write ending time to sheet")
+		return
+	}
 
-	b, err := ioutil.ReadFile("credentials.json")
+		b, err := ioutil.ReadFile("credentials.json")
 	if err != nil {
 		log.Fatalf("Unable to read client secret file: %v", err)
 	}
@@ -105,7 +112,7 @@ func main() {
 		}else{
 			fmt.Println(now.Format("01-02-2006") +" ] Succesfully Clocked in @ " + now.Format("03:04:05"))
 		}
-	}
+	}else
 
 
 	if os.Args[1] == "o" {
@@ -191,7 +198,14 @@ func main() {
 				fmt.Println("Hours Link: PUT HOURS LINK HERE")
 			}
 		}
+	}else{
+		fmt.Println("Please Supply A valid parameter.")
+		fmt.Println("s : setup, link to a new spread sheet or account")
+		fmt.Println("i : clock in, write starting time to sheet")
+		fmt.Println("o : clock out, write ending time to sheet")
 	}
+
+
 }
 
 
