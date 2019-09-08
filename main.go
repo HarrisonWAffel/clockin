@@ -38,7 +38,12 @@ func main() {
 
 		b, err := ioutil.ReadFile("credentials.json")
 	if err != nil {
-		log.Fatalf("Unable to read client secret file: %v", err)
+		fmt.Println("Unable to read client secret file: Steps to fix: ")
+		fmt.Println("1] to go https://developers.google.com/sheets/api/quickstart/go")
+		fmt.Println("2] Click 'ENABLE THE GOOGLE SHEETS API'")
+		fmt.Println("3] When the pop up appears click 'DOWNLOAD CLIENT CONFIGURATION'")
+		fmt.Println("4] place the downloaded file next to the 'main.go' file")
+
 	}
 
 	// If modifying these scopes, delete your previously saved token.json.
