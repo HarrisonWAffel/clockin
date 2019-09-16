@@ -13,8 +13,6 @@ import (
 	"net/http"
 	"os"
 	"strings"
-
-	//"strings"
 	"time"
 )
 
@@ -85,8 +83,8 @@ func main() {
 		fmt.Println("2] Click 'ENABLE THE GOOGLE SHEETS API'")
 		fmt.Println("3] When the pop up appears click 'DOWNLOAD CLIENT CONFIGURATION'")
 		fmt.Println("4] place the downloaded file next to the 'main.go' file")
-
 	return
+
 	}
 
 
@@ -116,7 +114,7 @@ func main() {
 		var vr sheets.ValueRange
 		vr.MajorDimension = "ROWS"
 		vr.Range = clockInRange
-		myval := []interface{}{now.Format("01-02-2006"), now.Format("03:04:05")}
+		myval := []interface{}{now.Format("01-02-2006"), now.Format("03:04:05 AM")}
 		vr.Values = append(vr.Values, myval)
 		_, err = srv.Spreadsheets.Values.Append(spreadsheetId, clockInRange, &vr).ValueInputOption("RAW").Do()
 		if err != nil {
@@ -179,9 +177,13 @@ func main() {
 			//	diff := stTime.Sub(now)
 			//	fmt.Println(diff)
 
+
+
+
+			//todo; make sure that we work on 15 minute increments of time, always rounding up it we are more then 50% past
 			var vr sheets.ValueRange
 			vr.MajorDimension = "COLUMNS"
-			myval := []interface{}{now.Format("03:04:05")}
+			myval := []interface{}{now.Format("03:04:05 PM")}
 			vr.Values = append(vr.Values, myval)
 			vr.Range = clockOutRange
 			_, err = srv.Spreadsheets.Values.Append(spreadsheetId, clockOutRange, &vr).ValueInputOption("RAW").Do()
